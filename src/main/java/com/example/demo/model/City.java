@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.*;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
@@ -15,6 +17,7 @@ public class City implements Validator {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     @Size(min = 5, max = 30, message = "Tu 5 den 30 ki tu")
     private String name;
 

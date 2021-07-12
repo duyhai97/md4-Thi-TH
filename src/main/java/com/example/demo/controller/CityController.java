@@ -41,9 +41,16 @@ public class CityController {
 
     @PostMapping("/create")
     public ModelAndView createCity(City city,  RedirectAttributes redirect){
-        cityService.save(city);
-        redirect.addFlashAttribute("success","Them moi thanh cong");
-        return new ModelAndView("redirect:/city");
+        try {
+            cityService.save(city);
+            redirect.addFlashAttribute("success","Them moi thanh cong");
+            return new ModelAndView("redirect:/city");
+        }catch (Exception e){
+            return new ModelAndView("/city/create", "city", new City());
+        }
+
+
+
     }
 
 
@@ -54,9 +61,15 @@ public class CityController {
 
     @PostMapping("/edit")
     public ModelAndView editCity(City city, RedirectAttributes redirect){
-        cityService.save(city);
-        redirect.addFlashAttribute("success"," Sua thanh cong");
-        return new ModelAndView("redirect:/city");
+        try {
+            cityService.save(city);
+            redirect.addFlashAttribute("success"," Sua thanh cong");
+            return new ModelAndView("redirect:/city");
+        }catch (Exception e){
+            return new ModelAndView("/city/edit", "city", cityService.findById(city.getId()));
+        }
+
+
     }
 
     @GetMapping("/delete/{id}")
