@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns: xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>
+    <a  th:href="@{/city}">
+        Back to list city
+    </a>
+</p>
+<table>
+    <tr>
+        <td><label>Tên thành phố:</label></td>
+        <td><span th:text="${city.get().name} "></span></td>
+    </tr>
+    <tr>
+        <td><label>Quốc gia:</label></td>
+        <td><label th:text="${city.get().country.name}"></label></td>
+    </tr>
+    <tr>
+        <td><label>Diện tích:</label></td>
+        <td><label th:text="${city.get().acreage} + 'Km2'"></label></td>
+    </tr>
+    <tr>
+        <td><label>Dân số :</label></td>
+        <td><label th:text="${city.get().population} + ': Ngìn người'"></label></td>
+    </tr>
+
+    <tr>
+        <td><label>GDP:</label></td>
+        <td><label th:text="${city.get().GDP} + '$'"></label></td>
+    </tr>
+    <tr>
+        <td><label>Giới thiệu:</label></td>
+        <td><label th:text="${city.get().introduce}"></label></td>
+    </tr>
+    <tr>
+        <td><a th:href="@{/city/edit/{id}(id=${city.get().getId()})}">Sửa</a></td>
+        <td><a th:href="@{/city/delete/{id}(id=${city.get().getId()})}">Xóa</a></td>
+    </tr>
+</table>
+
+
+
+
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

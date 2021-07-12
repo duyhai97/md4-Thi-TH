@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th="http://www.w3.org/1999/xhtml">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<h3>List City</h3>
+<p>
+    <a th:href="@{/city/create}">
+        Add new City
+    </a>
+</p>
+
+<div class="notify">
+    <div th:if="${success}">
+        <span th:text="${success}"></span>
+    </div>
+</div>
+
+<table id = "customers">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Tên thành phố</th>
+        <th>Quốc gia</th>
+        <th colspan="2">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row : ${list}">
+        <td th:text="${row.id}"></td>
+        <td><a th:href="@{/city/view/{id}(id=${row.getId()})}" th:text="${row.name}"></a></td>
+        <td th:text="${row.getCountry.name}"></td>
+        <td><a th:href="@{/city/edit/{id}(id=${row.getId()})}">edit</a></td>
+        <td><a th:href="@{/city/delete/{id}(id=${row.getId()})}">delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
